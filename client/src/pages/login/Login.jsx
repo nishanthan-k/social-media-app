@@ -1,58 +1,106 @@
-import React, { useContext, useState } from "react";
-import "./Login.scss";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Box, Button, FormHelperText, Grid, TextField, Typography } from "@mui/material";
+import { Formik } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../contexts/AuthContext";
+import "./Login.scss";
 
 const Login = () => {
   const { storeUser } = useContext(AuthContext);
-  const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleInputChange = (e, key) => {
-    setFormValues((prev) => ({ ...prev, [key]: e.target.value }));
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    storeUser(formValues.email, formValues.password);
-  };
-
+  const navigate = useNavigate();
+  const notify = () => {
+    toast.success("User Registered!", {
+      position: "top-right",
+      autoClose: 1000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      theme: "colored",
+      style: {backgroundColor: "green", fontStyle: "bold"}
+    })
+  }
   return (
-    <div className="login">
-      <h2>Login</h2>
-      <form action="" className="form">
-        <label htmlFor="email" className="label">
-          <p>Email Address</p>
-          <input
-            type="text"
-            placeholder="Email Address"
-            value={formValues.email}
-            onChange={(e) => handleInputChange(e, "email")}
-            required
-          />
-        </label>
-        <label htmlFor="password" className="label">
-          <p>Password</p>
-          <input
-            type="password"
-            placeholder="Password"
-            value={formValues.password}
-            onChange={(e) => handleInputChange(e, "password")}
-            required
-          />
-        </label>
-        <div className="">
-          <Link to="/register">
-            <p className="text">Register</p>
-          </Link>
-          <p className="text">Forgot Password</p>
-        </div>
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
-    </div>
+    <Grid container className="login">
+      <ToastContainer />
+      <Formik
+        initialValues={{
+          email: "abc",
+          password: "123",
+        }}
+        validate={(values) => {
+          const errors = {};
+
+          if (!values.email) {
+            errors.email = "Email is required";
+          } else if (values.email !== "123") {
+            errors.email = "User doesn't exist";
+          }
+
+          if (!values.password) {
+            errors.password = "Password is required";
+          } else if (values.password !== "123") {
+            errors.password = "Incorrect password";
+          }
+
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          storeUser(values.email, values.password);
+          notify();
+          setTimeout(() => {
+            setSubmitting(false);
+            navigate("/");
+          }, 1500);
+        }}
+        validateOnBlur={false}
+        validateOnChange={false}
+      >
+        {(props) => {
+          console.log("render errors", props.errors);
+          return (
+            <Box component={"form"} className="form">
+              <TextField
+                className="textField"
+                label="Email"
+                name="email"
+                value={props.values.email}
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                error={props.errors.email ? true: false}
+                required
+                fullWidth
+              />
+              {props.errors.email && <FormHelperText className="errors" >{props.errors.email}</FormHelperText>}
+
+              <TextField
+                label="Password"
+                name="password"
+                value={props.values.password}
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                error={props.errors.password ? true: false}
+                required
+                fullWidth
+              />
+              {props.errors.password && <FormHelperText className="errors" >{props.errors.password}</FormHelperText>}
+
+              <Button
+                onClick={props.handleSubmit}
+                variant="contained"
+                fullWidth
+                size="large"
+              >
+                Submit
+              </Button>
+              <Typography variant="body1">
+                <Link to="/register">Don't have an account? Register</Link>
+              </Typography>
+            </Box>
+          );
+        }}
+      </Formik>
+    </Grid>
   );
 };
 
