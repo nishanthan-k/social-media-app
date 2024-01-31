@@ -1,12 +1,20 @@
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import "./style.scss";
-import AuthContextProvider from "./contexts/AuthContext";
+import AuthContextProvider, { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/home/Home";
+import { useContext } from "react";
+
+const PrivateRoute = ({path, element}) => {
+  const {isLoggedIn} = useContext(AuthContext)
+
+  return isLoggedIn ? element : <Navigate to="/login" />
+}
 
 function App() {
   const router = createBrowserRouter([
@@ -20,7 +28,7 @@ function App() {
     },
     {
       path: "/",
-      element: <Home />
+      element: <PrivateRoute path="/" element={<Home />} />
     }
   ])
 
