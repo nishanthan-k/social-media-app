@@ -1,12 +1,36 @@
 import React from "react";
 import "./Register.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { Box, Button, Grid, TextField, Typography, FormHelperText } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  FormHelperText,
+} from "@mui/material";
 import { Formik } from "formik";
+import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
+  const notify = () => {
+    toast.success("User Registered!", {
+      position: "top-right",
+      autoClose: 1000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      theme: "colored",
+      style: { backgroundColor: "green", fontStyle: "bold" },
+    });
+  };
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    username: Yup.string().required("Username is required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
 
   return (
     <Grid container className="register">
@@ -15,44 +39,14 @@ const Register = () => {
         initialValues={{
           name: "",
           username: "",
-          email: "",
+          password: "",
           password: "",
         }}
-        validate={(values) => {
-          let errors = {};
-          const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-
-          if (!values.name) {
-            errors.name = "Name is required";
-          }
-
-          if (!values.username) {
-            errors.username = "Username is required";
-          }
-
-          if (!values.email) {
-            errors.email = "Email is required";
-          } else if (!values.email.match(isValidEmail)) {
-            errors.email = "Invalid Email"
-          }
-
-          if (!values.password) {
-            errors.password = "Password is required";
-          }
-
-          return errors
-        }}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
-          toast.success("User Registered!", {
-            position: "top-right",
-            autoClose: 1000,
-            closeOnClick: true,
-            pauseOnHover: true,
-            theme: "colored",
-            style: {backgroundColor: "green", fontStyle: "bold"}
-          })
+          notify();
           setTimeout(() => {
-            navigate("/")
+            navigate("/");
           }, 1500);
         }}
         validateOnBlur={false}
@@ -71,7 +65,11 @@ const Register = () => {
                 required
                 fullWidth
               />
-              {props.errors.name && <FormHelperText className="errors" >{props.errors.name}</FormHelperText>}
+              {props.errors.name && (
+                <FormHelperText className="errors">
+                  {props.errors.name}
+                </FormHelperText>
+              )}
 
               <TextField
                 label="Username"
@@ -83,7 +81,11 @@ const Register = () => {
                 required
                 fullWidth
               />
-              {props.errors.username && <FormHelperText className="errors" >{props.errors.username}</FormHelperText>}
+              {props.errors.username && (
+                <FormHelperText className="errors">
+                  {props.errors.username}
+                </FormHelperText>
+              )}
 
               <TextField
                 label="Email"
@@ -95,7 +97,11 @@ const Register = () => {
                 required
                 fullWidth
               />
-              {props.errors.email && <FormHelperText className="errors" >{props.errors.email}</FormHelperText>}
+              {props.errors.email && (
+                <FormHelperText className="errors">
+                  {props.errors.email}
+                </FormHelperText>
+              )}
 
               <TextField
                 label="Password"
@@ -107,7 +113,11 @@ const Register = () => {
                 required
                 fullWidth
               />
-              {props.errors.password && <FormHelperText className="errors" >{props.errors.password}</FormHelperText>}
+              {props.errors.password && (
+                <FormHelperText className="errors">
+                  {props.errors.password}
+                </FormHelperText>
+              )}
 
               <Button
                 onClick={props.handleSubmit}
