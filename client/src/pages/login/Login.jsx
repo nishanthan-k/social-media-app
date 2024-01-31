@@ -1,21 +1,28 @@
-import React, { useContext } from "react";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
   Box,
   Button,
   FormHelperText,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
 import { Formik } from "formik";
-import * as Yup from "yup";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Login.scss";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { storeUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const notify = () => {
@@ -51,7 +58,7 @@ const Login = () => {
         validate={(values) => {
           const errors = {};
 
-         if (values.email !== "abc@gmail.com") {
+          if (values.email !== "abc@gmail.com") {
             errors.email = "User doesn't exist";
           }
 
@@ -86,6 +93,13 @@ const Login = () => {
                 error={props.errors.email ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
               {props.errors.email && (
                 <FormHelperText className="errors">
@@ -95,6 +109,7 @@ const Login = () => {
 
               <TextField
                 label="Password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 value={props.values.password}
                 onChange={props.handleChange}
@@ -102,6 +117,19 @@ const Login = () => {
                 error={props.errors.password ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {showPassword ? <LockOpenIcon /> : <LockIcon />}
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end" onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                    </InputAdornment>
+                  ),
+                  
+                }}
               />
               {props.errors.password && (
                 <FormHelperText className="errors">

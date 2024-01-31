@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.scss";
 import { Link, useNavigate } from "react-router-dom";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import PersonIcon from "@mui/icons-material/Person";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
 import {
   Box,
   Button,
@@ -8,6 +15,7 @@ import {
   TextField,
   Typography,
   FormHelperText,
+  InputAdornment,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -15,6 +23,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const notify = () => {
     toast.success("User Registered!", {
       position: "top-right",
@@ -64,6 +73,13 @@ const Register = () => {
                 error={props.errors.name ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
               {props.errors.name && (
                 <FormHelperText className="errors">
@@ -80,6 +96,13 @@ const Register = () => {
                 error={props.errors.username ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonPinIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
               {props.errors.username && (
                 <FormHelperText className="errors">
@@ -88,6 +111,7 @@ const Register = () => {
               )}
 
               <TextField
+                className="textField"
                 label="Email"
                 name="email"
                 value={props.values.email}
@@ -96,6 +120,13 @@ const Register = () => {
                 error={props.errors.email ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
               {props.errors.email && (
                 <FormHelperText className="errors">
@@ -105,6 +136,7 @@ const Register = () => {
 
               <TextField
                 label="Password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 value={props.values.password}
                 onChange={props.handleChange}
@@ -112,6 +144,25 @@ const Register = () => {
                 error={props.errors.password ? true : false}
                 required
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {showPassword ? <LockOpenIcon /> : <LockIcon />}
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </InputAdornment>
+                  ),
+                }}
               />
               {props.errors.password && (
                 <FormHelperText className="errors">
