@@ -28,7 +28,8 @@ function App() {
     },
     {
       path: "/",
-      element: <PrivateRoute path="/" element={<Home />} />
+      // element: <PrivateRoute path="/" element={<Home />} />
+      element: <Home />
     }
   ])
 
