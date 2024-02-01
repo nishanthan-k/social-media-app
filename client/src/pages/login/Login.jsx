@@ -1,22 +1,9 @@
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import {
-  Box,
-  Button,
-  FormHelperText,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
 import { Formik } from "formik";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button, Form, FormInput, Icon, Segment } from "semantic-ui-react";
 import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Login.scss";
@@ -47,112 +34,107 @@ const Login = () => {
     ),
   });
   return (
-    <Grid container className="login">
+    <div raised className="login">
       <ToastContainer />
-      <Formik
-        initialValues={{
-          email: "abc@gmail.com",
-          password: "123",
-        }}
-        validationSchema={validationSchema}
-        validate={(values) => {
-          const errors = {};
+      <div className="card">
+        <div className="left">
+          <h1>Social Media</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptatibus fugiat illo quod, fuga, culpa eius hic voluptatem
+            dolore cupiditate unde esse praesentium beatae architecto, nesciunt
+            quis rerum aut libero molestiae!
+          </p>
+          <span>Don't have an account?</span>
+          <Button className="reg-btn" content="Register" as={Link} to="/register" color="orange" />
+        </div>
+        <Formik
+          initialValues={{
+            email: "abc@gmail.com",
+            password: "123",
+          }}
+          validationSchema={validationSchema}
+          validate={(values) => {
+            const errors = {};
 
-          if (values.email !== "abc@gmail.com") {
-            errors.email = "User doesn't exist";
-          }
+            if (values.email !== "abc@gmail.com") {
+              errors.email = "User doesn't exist";
+            }
 
-          if (values.password !== "123") {
-            errors.password = "Incorrect password";
-          }
+            if (values.password !== "123") {
+              errors.password = "Incorrect password";
+            }
 
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          storeUser(values.email, values.password);
-          notify();
-          setTimeout(() => {
-            setSubmitting(false);
-            navigate("/");
-          }, 1500);
-        }}
-        validateOnBlur={false}
-        validateOnChange={false}
-      >
-        {(props) => {
-          console.log("render errors", props.errors);
-          return (
-            <Box component={"form"} className="form">
-              <TextField
-                className="textField"
-                label="Email"
-                name="email"
-                value={props.values.email}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.email ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {props.errors.email && (
-                <FormHelperText className="errors">
-                  {props.errors.email}
-                </FormHelperText>
-              )}
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            storeUser(values.email, values.password);
+            notify();
+            setTimeout(() => {
+              setSubmitting(false);
+              navigate("/");
+            }, 1500);
+          }}
+          validateOnBlur={false}
+          validateOnChange={false}
+        >
+          {(props) => {
+            console.log(props.errors);
+            return (
+              <div raised className="right">
+                <h1>Social Login</h1>
+                <Form className="form" onSubmit={props.handleSubmit}>
+                  <Form.Field error={props.errors.email ? true : false}>
+                    {/* <label>Email</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Email"
+                      name="email"
+                      type="text"
+                      value={props.values.email}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.email && (
+                      <div className="ui pointing below red basic label">
+                        {props.errors.email}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <TextField
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={props.values.password}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.password ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      {showPassword ? <LockOpenIcon /> : <LockIcon />}
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end" onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                    </InputAdornment>
-                  ),
-                  
-                }}
-              />
-              {props.errors.password && (
-                <FormHelperText className="errors">
-                  {props.errors.password}
-                </FormHelperText>
-              )}
+                  <Form.Field error={props.errors.password ? true : false}>
+                    {/* <label>Password</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={props.values.password}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.password && (
+                      <div className="ui pointing above red basic label">
+                        {props.errors.password}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <Button
-                onClick={props.handleSubmit}
-                variant="contained"
-                fullWidth
-                size="large"
-              >
-                Submit
-              </Button>
-              <Typography variant="body1">
-                <Link to="/register">Don't have an account? Register</Link>
-              </Typography>
-            </Box>
-          );
-        }}
-      </Formik>
-    </Grid>
+                  <Button
+                    className="button"
+                    content="Login"
+                    primary
+                    type="submit"
+                  />
+                </Form>
+              </div>
+            );
+          }}
+        </Formik>
+      </div>
+    </div>
   );
 };
 

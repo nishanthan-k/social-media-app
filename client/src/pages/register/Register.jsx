@@ -1,25 +1,10 @@
-import React, { useState } from "react";
-import "./Register.scss";
-import { Link, useNavigate } from "react-router-dom";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import PersonIcon from "@mui/icons-material/Person";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import {
-  Box,
-  Button,
-  Grid,
-  TextField,
-  Typography,
-  FormHelperText,
-  InputAdornment,
-} from "@mui/material";
 import { Formik } from "formik";
-import * as Yup from "yup";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { Form, Button } from "semantic-ui-react";
+import * as Yup from "yup";
+import "./Register.scss";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -42,150 +27,127 @@ const Register = () => {
   });
 
   return (
-    <Grid container className="register">
+    <div container className="register">
       <ToastContainer />
-      <Formik
-        initialValues={{
-          name: "",
-          username: "",
-          password: "",
-          password: "",
-        }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          notify();
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
-        }}
-        validateOnBlur={false}
-        validateOnChange={false}
-      >
-        {(props) => {
-          return (
-            <Box component={"form"} className="form">
-              <TextField
-                label="Name"
-                name="name"
-                value={props.values.name}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.name ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {props.errors.name && (
-                <FormHelperText className="errors">
-                  {props.errors.name}
-                </FormHelperText>
-              )}
+      <div className="card">
+        <div className="left">
+          <h1>Social Media</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cum? Blanditiis reiciendis totam ex quos quod dicta earum ad! Facere minus delectus laborum ipsum molestias aut itaque nihil modi quia?</p>
+          <span>Already have an account?</span>
+          <Button className="login-btn" as={Link}  to="/login" content="Login" color="orange" />
+        </div>
+        <Formik
+          initialValues={{
+            name: "",
+            username: "",
+            password: "",
+            password: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            notify();
+            setTimeout(() => {
+              navigate("/");
+            }, 1500);
+          }}
+          validateOnBlur={false}
+          validateOnChange={false}
+        >
+          {(props) => {
+            return (
+              <div className="right">
+                <h1>Register</h1>
+                <Form className="form">
+                  <Form.Field error={props.errors.name ? true : false}>
+                    {/* <label>Name</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Name"
+                      name="name"
+                      type="text"
+                      value={props.values.name}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.name && (
+                      <div className="ui pointing below red basic label">
+                        {props.errors.name}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <TextField
-                label="Username"
-                name="username"
-                value={props.values.username}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.username ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <PersonPinIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {props.errors.username && (
-                <FormHelperText className="errors">
-                  {props.errors.username}
-                </FormHelperText>
-              )}
+                  <Form.Field error={props.errors.username ? true : false}>
+                    {/* <label>Username</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Username"
+                      name="username"
+                      type={showPassword ? "text" : "password"}
+                      value={props.values.username}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.username && (
+                      <div className="ui pointing above red basic label">
+                        {props.errors.username}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <TextField
-                className="textField"
-                label="Email"
-                name="email"
-                value={props.values.email}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.email ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {props.errors.email && (
-                <FormHelperText className="errors">
-                  {props.errors.email}
-                </FormHelperText>
-              )}
+                  <Form.Field error={props.errors.email ? true : false}>
+                    {/* <label>Email</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Email"
+                      name="email"
+                      type="text"
+                      value={props.values.email}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.email && (
+                      <div className="ui pointing below red basic label">
+                        {props.errors.email}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <TextField
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={props.values.password}
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                error={props.errors.password ? true : false}
-                required
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      {showPassword ? <LockOpenIcon /> : <LockIcon />}
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <VisibilityIcon />
-                      ) : (
-                        <VisibilityOffIcon />
-                      )}
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {props.errors.password && (
-                <FormHelperText className="errors">
-                  {props.errors.password}
-                </FormHelperText>
-              )}
+                  <Form.Field error={props.errors.password ? true : false}>
+                    {/* <label>Password</label> */}
+                    <Form.Input
+                      className="input"
+                      placeholder="Password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={props.values.password}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      required
+                    />
+                    {props.errors.password && (
+                      <div className="ui pointing above red basic label">
+                        {props.errors.password}
+                      </div>
+                    )}
+                  </Form.Field>
 
-              <Button
-                onClick={props.handleSubmit}
-                variant="contained"
-                size="large"
-                fullWidth
-              >
-                Register
-              </Button>
-              <Typography variant="body1">
-                <Link to="/login">Already an user? Login</Link>
-              </Typography>
-            </Box>
-          );
-        }}
-      </Formik>
-    </Grid>
+                  <Button
+                    className="button"
+                    content="Register"
+                    primary
+                    fluid
+                    type="submit"
+                  />
+                </Form>
+              </div>
+            );
+          }}
+        </Formik>
+      </div>
+    </div>
   );
 };
 
