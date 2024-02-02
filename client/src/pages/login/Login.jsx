@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, FormInput, Icon, Segment } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Login.scss";
