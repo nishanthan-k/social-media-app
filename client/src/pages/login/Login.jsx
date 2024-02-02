@@ -1,9 +1,9 @@
 import { Formik } from "formik";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Icon } from "semantic-ui-react";
 import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Login.scss";
@@ -34,7 +34,7 @@ const Login = () => {
     ),
   });
   return (
-    <div raised className="login">
+    <div className="login">
       <ToastContainer />
       <div className="card">
         <div className="left">
@@ -45,9 +45,16 @@ const Login = () => {
             dolore cupiditate unde esse praesentium beatae architecto, nesciunt
             quis rerum aut libero molestiae!
           </p>
-          <span>Don't have an account?</span>
-          <Button className="reg-btn" content="Register" as={Link} to="/register" color="orange" />
+          <span>Don{`'`}t have an account?</span>
+          <Button
+            className="reg-btn"
+            content="Register"
+            as={Link}
+            to="/register"
+            color="orange"
+          />
         </div>
+        {/* eslint-disable react/prop-types */}
         <Formik
           initialValues={{
             email: "abc@gmail.com",
@@ -81,11 +88,10 @@ const Login = () => {
           {(props) => {
             console.log(props.errors);
             return (
-              <div raised className="right">
+              <div className="right">
                 <h1>Social Login</h1>
                 <Form className="form" onSubmit={props.handleSubmit}>
                   <Form.Field error={props.errors.email ? true : false}>
-                    {/* <label>Email</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Email"
@@ -104,7 +110,6 @@ const Login = () => {
                   </Form.Field>
 
                   <Form.Field error={props.errors.password ? true : false}>
-                    {/* <label>Password</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Password"
@@ -114,6 +119,13 @@ const Login = () => {
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       required
+                      icon={
+                        <Icon
+                          name={showPassword ? "eye" : "eye slash"}
+                          link
+                          onClick={() => setShowPassword(!showPassword)}
+                        />
+                      }
                     />
                     {props.errors.password && (
                       <div className="ui pointing above red basic label">
@@ -133,6 +145,7 @@ const Login = () => {
             );
           }}
         </Formik>
+        {/* eslint-enable react/prop-types */}
       </div>
     </div>
   );

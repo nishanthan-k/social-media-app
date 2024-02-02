@@ -1,8 +1,8 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Form, Button } from "semantic-ui-react";
+import { Button, Form, Icon } from "semantic-ui-react";
 import * as Yup from "yup";
 import "./Register.scss";
 
@@ -32,10 +32,22 @@ const Register = () => {
       <div className="card">
         <div className="left">
           <h1>Social Media</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, cum? Blanditiis reiciendis totam ex quos quod dicta earum ad! Facere minus delectus laborum ipsum molestias aut itaque nihil modi quia?</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur, cum? Blanditiis reiciendis totam ex quos quod dicta
+            earum ad! Facere minus delectus laborum ipsum molestias aut itaque
+            nihil modi quia?
+          </p>
           <span>Already have an account?</span>
-          <Button className="login-btn" as={Link}  to="/login" content="Login" color="orange" />
+          <Button
+            className="login-btn"
+            as={Link}
+            to="/login"
+            content="Login"
+            color="orange"
+          />
         </div>
+        {/* eslint-disable react/prop-types */}
         <Formik
           initialValues={{
             name: "",
@@ -122,6 +134,13 @@ const Register = () => {
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       required
+                      icon={
+                        <Icon
+                          name={showPassword ? "eye" : "eye slash"} 
+                          link
+                          onClick={() => setShowPassword(!showPassword)}
+                        />
+                      }
                     />
                     {props.errors.password && (
                       <div className="ui pointing above red basic label">
@@ -142,10 +161,10 @@ const Register = () => {
             );
           }}
         </Formik>
+        {/* eslint-enable react/prop-types */}
       </div>
     </div>
   );
 };
-
 
 export default Register;
