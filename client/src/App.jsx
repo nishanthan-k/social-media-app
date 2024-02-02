@@ -9,26 +9,22 @@ import Register from "./pages/register/Register";
 import "./style.scss";
 import AuthContextProvider from "./contexts/AuthContext";
 import Home from "./pages/home/Home";
-import Navbar from "./components/navbar/Navbar";
-import Leftbar from "./components/leftbar/Leftbar";
-import Rightbar from "./components/rightbar/Rightbar";
+import NavBar from "./components/navbar/NavBar";
+import LeftBar from "./components/leftbar/LeftBar";
+import RightBar from "./components/rightbar/RightBar";
 import Profile from "./pages/profile/Profile";
 import PropTypes from "prop-types";
-
-// const PrivateRoute = ({ path, element }) => {
-//   const { isLoggedIn } = useContext(AuthContext);
-
-//   return isLoggedIn ? element : <Navigate to="/login" />;
-// };
 
 const Layout = () => {
   return (
     <>
-      <Navbar />
+      <NavBar />
       <div style={{ display: "flex" }}>
-        <Leftbar />
-        <Outlet />
-        <Rightbar />
+        <LeftBar />
+        <div style={{ flex: "6" }}>
+          <Outlet />
+        </div>
+        <RightBar />
       </div>
     </>
   );
@@ -81,7 +77,7 @@ function App() {
 }
 
 ProtectedRoute.propTypes = {
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 export default App;

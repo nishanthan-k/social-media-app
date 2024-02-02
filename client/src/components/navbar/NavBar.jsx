@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Navbar.scss";
+import "./NavBar.scss";
 import { Icon, Input, Segment } from "semantic-ui-react";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -9,19 +9,16 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <Segment className="navbar">
+    <Segment className="navBar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>Social Media</span>
         </Link>
-        <HomeOutlinedIcon className="icon" />
-        <DarkModeOutlinedIcon className="icon" />
-        <GridViewOutlinedIcon className="icon" />
-        {/* <Icon name="home" size="large" />
-        <Icon name="moon outline" size="large" />
-        <Icon name="block layout" size="large" /> */}
+        <HomeOutlinedIcon className="mui-icon" />
+        <DarkModeOutlinedIcon className="mui-icon" />
+        <GridViewOutlinedIcon className="mui-icon" />
         <div className="search">
           <Input icon iconPosition="left">
             <input type="text" placeholder="Search..." />
@@ -30,12 +27,9 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <PersonOutlinedIcon className="icon" />
-        <EmailOutlinedIcon className="icon" />
-        <NotificationsOutlinedIcon className="icon" />
-        {/* <Icon name="user outline" size="large" />
-        <Icon name="mail outline" size="large" />
-        <Icon name="bell outline" size="large" /> */}
+        <PersonOutlinedIcon className="mui-icon" />
+        <EmailOutlinedIcon className="mui-icon" />
+        <NotificationsOutlinedIcon className="mui-icon" />
         <div className="user">
           <img
             src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
@@ -48,6 +42,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;
 
 // bell outline    moon outline
