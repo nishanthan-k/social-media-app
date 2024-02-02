@@ -16,9 +16,9 @@ const Navbar = () => {
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>Social Media</span>
         </Link>
-        <HomeOutlinedIcon />
-        <DarkModeOutlinedIcon />
-        <GridViewOutlinedIcon />
+        <HomeOutlinedIcon className="icon" />
+        <DarkModeOutlinedIcon className="icon" />
+        <GridViewOutlinedIcon className="icon" />
         {/* <Icon name="home" size="large" />
         <Icon name="moon outline" size="large" />
         <Icon name="block layout" size="large" /> */}
@@ -30,9 +30,9 @@ const Navbar = () => {
         </div>
       </div>
       <div className="right">
-        <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
-        <NotificationsOutlinedIcon />
+        <PersonOutlinedIcon className="icon" />
+        <EmailOutlinedIcon className="icon" />
+        <NotificationsOutlinedIcon className="icon" />
         {/* <Icon name="user outline" size="large" />
         <Icon name="mail outline" size="large" />
         <Icon name="bell outline" size="large" /> */}

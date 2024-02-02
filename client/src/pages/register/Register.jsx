@@ -27,7 +27,7 @@ const Register = () => {
   });
 
   return (
-    <div container className="register">
+    <div className="register">
       <ToastContainer />
       <div className="card">
         <div className="left">
@@ -40,11 +40,11 @@ const Register = () => {
           initialValues={{
             name: "",
             username: "",
-            password: "",
+            email: "",
             password: "",
           }}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
+          onSubmit={() => {
             notify();
             setTimeout(() => {
               navigate("/");
@@ -59,7 +59,6 @@ const Register = () => {
                 <h1>Register</h1>
                 <Form className="form">
                   <Form.Field error={props.errors.name ? true : false}>
-                    {/* <label>Name</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Name"
@@ -78,7 +77,6 @@ const Register = () => {
                   </Form.Field>
 
                   <Form.Field error={props.errors.username ? true : false}>
-                    {/* <label>Username</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Username"
@@ -97,7 +95,6 @@ const Register = () => {
                   </Form.Field>
 
                   <Form.Field error={props.errors.email ? true : false}>
-                    {/* <label>Email</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Email"
@@ -116,7 +113,6 @@ const Register = () => {
                   </Form.Field>
 
                   <Form.Field error={props.errors.password ? true : false}>
-                    {/* <label>Password</label> */}
                     <Form.Input
                       className="input"
                       placeholder="Password"
@@ -150,5 +146,6 @@ const Register = () => {
     </div>
   );
 };
+
 
 export default Register;
