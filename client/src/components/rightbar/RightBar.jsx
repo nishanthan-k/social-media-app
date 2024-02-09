@@ -33,9 +33,8 @@ const RightBar = () => {
               <p>
                 <span>Jane Doe</span> changed their cover picture
               </p>
-
             </div>
-              <span>1 min ago</span>
+            <span>1 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -46,9 +45,8 @@ const RightBar = () => {
               <p>
                 <span>Jane Doe</span> added story
               </p>
-
             </div>
-              <span>1 min ago</span>
+            <span>1 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -59,9 +57,8 @@ const RightBar = () => {
               <p>
                 <span>Jane Doe</span> liked a message
               </p>
-
             </div>
-              <span>1 min ago</span>
+            <span>1 min ago</span>
           </div>
           <div className="user">
             <div className="userInfo">
@@ -72,9 +69,51 @@ const RightBar = () => {
               <p>
                 <span>Jane Doe</span> liked your post
               </p>
-
             </div>
-              <span>1 min ago</span>
+            <span>1 min ago</span>
+          </div>
+        </Segment>
+        <Segment className="item">
+          <span>Online Friends</span>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
+                alt="user profile"
+              />
+              <div className="online" />
+              <span>Jane Doe</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
+                alt="user profile"
+              />
+              <div className="online" />
+              <span>Jane Doe</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
+                alt="user profile"
+              />
+              <div className="online" />
+              <span>Jane Doe</span>
+            </div>
+          </div>
+          <div className="user">
+            <div className="userInfo">
+              <img
+                src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
+                alt="user profile"
+              />
+              <div className="online" />
+              <span>Jane Doe</span>
+            </div>
           </div>
         </Segment>
       </div>
