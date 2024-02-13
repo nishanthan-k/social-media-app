@@ -14,10 +14,11 @@ import LeftBar from "./components/leftbar/LeftBar";
 import RightBar from "./components/rightbar/RightBar";
 import Profile from "./pages/profile/Profile";
 import PropTypes from "prop-types";
+import "./style.scss"
 
 const Layout = () => {
   return (
-    <>
+    <div className="theme-dark">
       <NavBar />
       <div style={{ display: "flex" }}>
         <LeftBar />
@@ -26,7 +27,7 @@ const Layout = () => {
         </div>
         <RightBar />
       </div>
-    </>
+    </div>
   );
 };
 
