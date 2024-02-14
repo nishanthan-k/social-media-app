@@ -24,7 +24,8 @@ const Login = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid Email").required("Email is Required"),
+    // email: Yup.string().email("Invalid Email").required("Email is Required"),
+    name: Yup.string().required("Username is Required"),
     password: Yup.string()
       .min(3, "Password length should be equal to or greater than 3")
       .required("Password is Required"),
@@ -57,15 +58,20 @@ const Login = () => {
         {/* eslint-disable react/prop-types */}
         <Formik
           initialValues={{
-            email: "abc@gmail.com",
+            email: "johndoe@gmail.com",
+            name: "John Doe",
             password: "123",
           }}
           validationSchema={validationSchema}
           validate={(values) => {
             const errors = {};
 
-            if (values.email !== "abc@gmail.com") {
-              errors.email = "User doesn't exist";
+            // if (values.email !== "abc@gmail.com") {
+            //   errors.email = "User doesn't exist";
+            // }
+            
+            if (values.name !== "John Doe") {
+              errors.name = "User doesn't exist";
             }
 
             if (values.password !== "123") {
@@ -75,8 +81,7 @@ const Login = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            // storeCurrentUser(values.email, values.password);
-            storeCurrentUser();
+            storeCurrentUser(values.name);
             notify();
             setTimeout(() => {
               setSubmitting(false);
@@ -95,17 +100,17 @@ const Login = () => {
                   <Form.Field error={props.errors.email ? true : false}>
                     <Form.Input
                       className="input"
-                      placeholder="Email"
-                      name="email"
+                      placeholder="Name"
+                      name="name"
                       type="text"
-                      value={props.values.email}
+                      value={props.values.name}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      required
+                      // required
                     />
-                    {props.errors.email && (
+                    {props.errors.name && (
                       <div className="ui pointing below red basic label">
-                        {props.errors.email}
+                        {props.errors.name}
                       </div>
                     )}
                   </Form.Field>
@@ -119,7 +124,7 @@ const Login = () => {
                       value={props.values.password}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      required
+                      // required
                       icon={
                         <Icon
                           name={showPassword ? "eye" : "eye slash"}

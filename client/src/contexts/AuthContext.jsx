@@ -9,12 +9,11 @@ const AuthContextProvider = ({ children }) => {
   );
 
   const storeCurrentUser = (
-    id = 1,
-    profilePic = "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    name = 1,
+    profilePic = "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
   ) => {
     setCurrentUser({
-      // email: `${email}`,
-      id: `${id}`,
+      name: `${name}`,
       profilePic: `${profilePic}`,
     });
   };

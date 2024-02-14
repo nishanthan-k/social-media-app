@@ -10,9 +10,11 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const {currentUser} = useContext(AuthContext)
 
   return (
     <Segment className="navBar">
@@ -22,10 +24,14 @@ const NavBar = () => {
         </Link>
         <HomeOutlinedIcon className="mui-icon" />
         {theme === "light" ? (
-          <DarkModeOutlinedIcon className="mui-icon" onClick={() => toggleTheme()}
+          <DarkModeOutlinedIcon
+            className="mui-icon"
+            onClick={() => toggleTheme()}
           />
         ) : (
-          <WbSunnyOutlinedIcon className="mui-icon" onClick={() => toggleTheme()}
+          <WbSunnyOutlinedIcon
+            className="mui-icon"
+            onClick={() => toggleTheme()}
           />
         )}
         <GridViewOutlinedIcon className="mui-icon" />
@@ -41,11 +47,8 @@ const NavBar = () => {
         <EmailOutlinedIcon className="mui-icon" />
         <NotificationsOutlinedIcon className="mui-icon" />
         <div className="user">
-          <img
-            src="https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg"
-            alt="user image"
-          />
-          <span>John Doe</span>
+          <img src={currentUser.profilePic} alt="user image" />
+          <span>{currentUser.name}</span>
         </div>
       </div>
     </Segment>
