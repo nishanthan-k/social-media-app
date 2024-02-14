@@ -13,7 +13,7 @@
     background-color: themed("bg") !important;
     border-bottom: 1px solid themed("border") !important;
     margin: 0 !important;
-    border-radius: 0 !important; 
+    border-radius: 0 !important;
 
     .left {
       display: flex;
@@ -27,7 +27,7 @@
       }
 
       .mui-icon {
-        font-size: 24px;
+        font-size: 22px;
         color: themed("logo");
 
         &:hover {
@@ -38,6 +38,10 @@
       .search {
         input {
           width: 500px;
+          background-color: themed("bgSoft");
+        }
+        &.icon {
+          color: themed("textColorSoft");
         }
       }
     }
@@ -48,7 +52,7 @@
       gap: 20px;
 
       .mui-icon {
-        font-size: 24px;
+        font-size: 22px;
         color: themed("logo");
 
         &:hover {
@@ -61,7 +65,7 @@
         align-items: center;
         gap: 10px;
         font-weight: 500;
-        
+
         img {
           width: 30px;
           height: 30px;
@@ -70,7 +74,7 @@
         }
 
         span {
-          color: themed("textColor")
+          color: themed("textColor");
         }
       }
     }

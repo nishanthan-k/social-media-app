@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import AuthContextProvider from "./contexts/AuthContext";
+import AuthContextProvider, { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/home/Home";
 import NavBar from "./components/navbar/NavBar";
 import LeftBar from "./components/leftbar/LeftBar";
@@ -37,7 +37,7 @@ const Layout = () => {
 };
 
 const ProtectedRoute = ({ children }) => {
-  const currentUser = true;
+  const {currentUser} = useContext(AuthContext);
   if (!currentUser) {
     return <Navigate to="/login" />;
   }

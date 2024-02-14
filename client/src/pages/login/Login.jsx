@@ -10,7 +10,7 @@ import "./Login.scss";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { storeUser } = useContext(AuthContext);
+  const { storeCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const notify = () => {
     toast.success("User Logged In!", {
@@ -75,7 +75,8 @@ const Login = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            storeUser(values.email, values.password);
+            // storeCurrentUser(values.email, values.password);
+            storeCurrentUser();
             notify();
             setTimeout(() => {
               setSubmitting(false);
