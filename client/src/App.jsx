@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import "./style.scss";
 import AuthContextProvider from "./contexts/AuthContext";
 import Home from "./pages/home/Home";
 import NavBar from "./components/navbar/NavBar";
@@ -15,10 +14,16 @@ import RightBar from "./components/rightbar/RightBar";
 import Profile from "./pages/profile/Profile";
 import PropTypes from "prop-types";
 import "./style.scss"
+import { useContext } from "react";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 const Layout = () => {
+  const {theme} = useContext(ThemeContext)
+
+  console.log(theme);
+
   return (
-    <div className="theme-dark">
+    <div className={`theme-${theme}`} style={{height: "100vh"}}>
       <NavBar />
       <div style={{ display: "flex" }}>
         <LeftBar />

@@ -6,7 +6,12 @@
     position: sticky;
     // top: 90px; // navbar is 70px height and it has padding on top and bottom 10px
     height: calc(100vh - 70px);
+    overflow: scroll;
     background-color: themed("bgSoft");
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .container {
       padding: 20px;
@@ -51,7 +56,7 @@
             }
 
             p {
-              color: gray;
+              color: themed("textColorSoft");
             }
 
             span {
