@@ -23,12 +23,12 @@
       span {
         font-size: 20px;
         font-weight: bold;
-        color: themed("textColor");
+        color: themed("logo");
       }
 
       .mui-icon {
         font-size: 22px;
-        color: themed("logo");
+        color: themed("textColor");
 
         &:hover {
           cursor: pointer;
@@ -53,7 +53,7 @@
 
       .mui-icon {
         font-size: 22px;
-        color: themed("logo");
+        color: themed("textColor");
 
         &:hover {
           cursor: pointer;
