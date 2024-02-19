@@ -4,7 +4,7 @@
   @include themify($themes) {
     display: flex;
     gap: 10px;
-    // height: 250px;
+    height: 130px;
     margin-bottom: 30px;
     position: relative;
 
@@ -42,7 +42,7 @@
 
       button {
         position: absolute;
-        bottom: 5px;
+        bottom: 35px;
         left: 70px;
         // color: white;
         background-color: #5271ff;
