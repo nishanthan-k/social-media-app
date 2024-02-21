@@ -8,9 +8,11 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 import { useState } from "react";
+import Comments from "../comments/Comments";
 
 const Post = ({ post }) => {
   const [liked, setLiked] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   return (
     <div className="post">
@@ -43,13 +45,14 @@ const Post = ({ post }) => {
             <span>12 likes</span>
             {/* </div> */}
           </div>
-          <div className="item comments">
+          <div className="item comments" onClick={() => setShowComments(!showComments)}>
             <TextsmsOutlinedIcon className="mui-icon"/> <span>12 comments</span>
           </div>
           <div className="item share">
             <ShareOutlinedIcon className="mui-icon"/> <span>Share</span>
           </div>
         </div>
+        {showComments && <Comments />}
       </Segment>
     </div>
   );
