@@ -38,6 +38,35 @@
           }
         }
       }
+
+      .content {
+        margin: 20px 0px;
+
+        img {
+           width: 100%;
+           max-height: 500px;
+           object-fit: cover;
+           margin-top: 20px;
+        }
+      }
+
+      .interactions {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+       
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          // font-size: 12px;
+
+          // .mui-icon {
+            // font-size: 23px;
+          // }
+        }
+      }
     }
   }
 }

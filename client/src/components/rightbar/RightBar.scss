@@ -4,7 +4,7 @@
   @include themify($themes) {
     flex: 3;
     position: sticky;
-    // top: 90px; // navbar is 70px height and it has padding on top and bottom 10px
+    top: 70px; // navbar is 70px height and it has padding on top and bottom 10px
     height: calc(100vh - 70px);
     overflow: scroll;
     background-color: themed("bgSoft");

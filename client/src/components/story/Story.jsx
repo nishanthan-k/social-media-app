@@ -42,7 +42,7 @@ const Story = () => {
       </div>
       {stories.map((story) => (
         <div className="item" key={story.id}>
-          <img className={!story.isViewed && "circle"} src={story.img} alt="" />
+          <img className={!story.isViewed ? "circle" : ""} src={story.img} alt="" />
           <span>{story.name}</span>
         </div>
       ))}

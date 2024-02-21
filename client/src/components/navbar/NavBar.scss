@@ -14,6 +14,7 @@
     border-bottom: 1px solid themed("border") !important;
     margin: 0 !important;
     border-radius: 0 !important;
+    z-index: 999;
 
     .left {
       display: flex;
