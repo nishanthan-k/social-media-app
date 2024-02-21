@@ -40,6 +40,10 @@
         input {
           width: 500px;
           background-color: themed("bgSoft");
+
+          @include mobile {
+            display: none;
+          }
         }
         &.icon {
           color: themed("textColorSoft");

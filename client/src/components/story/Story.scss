@@ -8,6 +8,10 @@
     margin-bottom: 30px;
     position: relative;
 
+    // @include mobile {
+    //   height: 50px;
+    // }
+
     .item {
       width: 100px;
       height: 100px;

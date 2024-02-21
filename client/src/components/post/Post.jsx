@@ -22,7 +22,7 @@ const Post = ({ post }) => {
             <img src={post.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile:${post.userId}`}
+                to={`/profile/${post.userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="name">{post.name}</span>
