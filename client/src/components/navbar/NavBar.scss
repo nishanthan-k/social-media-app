@@ -2,7 +2,7 @@
 
 .navBar {
   @include themify($themes) {
-    width: 100vw;
+    width: calc(100vw + 20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +15,7 @@
     margin: 0 !important;
     border-radius: 0 !important;
     z-index: 999;
+    background-color: red !important;
 
     .left {
       display: flex;
@@ -44,9 +45,18 @@
           @include mobile {
             display: none;
           }
+
+          @include tablet {
+            width: 200px;
+          }
         }
+
         &.icon {
           color: themed("textColorSoft");
+          
+          @include mobile {
+            color: black;
+          }
         }
       }
     }
@@ -55,6 +65,10 @@
       display: flex;
       align-items: center;
       gap: 20px;
+
+      @include mobile {
+        display: none;
+      }
 
       .mui-icon {
         font-size: 22px;
@@ -70,6 +84,10 @@
         align-items: center;
         gap: 10px;
         font-weight: 500;
+
+        @include mobile {
+          display: none;
+        }
 
         img {
           width: 30px;

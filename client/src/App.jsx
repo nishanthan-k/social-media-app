@@ -23,7 +23,7 @@ const Layout = () => {
   console.log(theme);
 
   return (
-    <div className={`theme-${theme}`} style={{height: "100vh"}}>
+    <div className={`theme-${theme}`} style={{height: "100vh", width: "100vw"}}>
       <NavBar />
       <div style={{ display: "flex" }}>
         <LeftBar />

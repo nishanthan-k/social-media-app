@@ -16,23 +16,22 @@
       }
 
       .profilePic {
-        width: 170px;
-        height: 170px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         object-fit: cover;
         position: absolute;
         left: 0;
         right: 0;
         margin: auto;
-        top: 210px;
-        z-index: 990;
+        top: 200px;
       }
     }
     .profileContainer {
       padding: 20px 70px;
 
       @include mobile{
-        padding: 10px;
+        padding: 5px !important;
       }
 
       @include tablet{
@@ -40,7 +39,8 @@
       }
 
       .uInfo {
-        height: 250px;
+        height: 180px;
+        border-radius: 20px;
         background-color: themed("bg");
         color: themed("textColor");
         padding: 50px;
@@ -86,7 +86,7 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
 
             .item {
               display: flex;
@@ -99,6 +99,7 @@
               }
             }
           }
+          
           button {
             border: none;
             background-color: #5271ff;

@@ -15,6 +15,10 @@
       display: none;
     }
 
+    @include tablet {
+      display: none;
+    }
+
     .container {
       padding: 20px;
 

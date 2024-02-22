@@ -2,11 +2,20 @@
 
 .post {
   @include themify($themes) {
+    
+    // @include mobile {
+    //   padding: 0px;
+    // }
+
     .container {
       padding: 20px;
       background-color: themed("bg") !important;
       color: themed("textColor");
       border-radius: 10px !important;
+
+      @include mobile {
+        
+      }
 
       .user {
         display: flex;
@@ -43,10 +52,10 @@
         margin: 20px 0px;
 
         img {
-           width: 100%;
-           max-height: 500px;
-           object-fit: cover;
-           margin-top: 20px;
+          width: 100%;
+          max-height: 500px;
+          object-fit: cover;
+          margin-top: 20px;
         }
       }
 
@@ -54,7 +63,7 @@
         display: flex;
         align-items: center;
         gap: 30px;
-       
+
         .item {
           display: flex;
           align-items: center;
@@ -63,7 +72,7 @@
           // font-size: 12px;
 
           // .mui-icon {
-            // font-size: 23px;
+          // font-size: 23px;
           // }
         }
       }
