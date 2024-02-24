@@ -2,11 +2,10 @@
 
 .navBar {
   @include themify($themes) {
-    width: calc(100vw + 20px);
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     height: 70px;
     position: sticky !important;
     top: 0;
@@ -15,7 +14,6 @@
     margin: 0 !important;
     border-radius: 0 !important;
     z-index: 999;
-    background-color: red !important;
 
     .left {
       display: flex;

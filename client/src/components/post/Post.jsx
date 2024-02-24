@@ -41,18 +41,30 @@ const Post = ({ post }) => {
         <div className="interactions">
           <div className="item like" onClick={() => setLiked(!liked)}>
             {/* <div className="like" onClick={() => setLiked(!liked)}> */}
-            {liked ? <FavoriteOutlinedIcon className="mui-icon"/> : <FavoriteBorderOutlinedIcon className="mui-icon"/>}
+            {liked ? (
+              <FavoriteOutlinedIcon className="mui-icon" />
+            ) : (
+              <FavoriteBorderOutlinedIcon className="mui-icon" />
+            )}
             <span>12 likes</span>
             {/* </div> */}
           </div>
-          <div className="item comments" onClick={() => setShowComments(!showComments)}>
-            <TextsmsOutlinedIcon className="mui-icon"/> <span>12 comments</span>
+          <div
+            className="item comments"
+            onClick={() => setShowComments(!showComments)}
+          >
+            <TextsmsOutlinedIcon className="mui-icon" />{" "}
+            <span>12 comments</span>
           </div>
           <div className="item share">
-            <ShareOutlinedIcon className="mui-icon"/> <span>Share</span>
+            <ShareOutlinedIcon className="mui-icon" /> <span>Share</span>
           </div>
         </div>
-        {showComments && <Comments />}
+        {showComments && (
+          <div style={{marginTop: "30px"}}>
+            <Comments />
+          </div>
+        )}
       </Segment>
     </div>
   );

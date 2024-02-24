@@ -2,14 +2,14 @@
 
 .leftBar {
   @include themify($themes) {
-    flex: 3;
+    // flex: 3;
     position: sticky;
     top: 70px; // navbar is 70px height and it has padding on top and bottom 10px
     height: calc(100vh - 70px);
     // overflow: scroll;
     background-color: themed("bg");
     color: themed("textColor");
-    min-width: 200px;
+    min-width: 300px;
 
     @include mobile {
       display: none;

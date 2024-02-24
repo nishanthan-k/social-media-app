@@ -20,14 +20,12 @@ import { ThemeContext } from "./contexts/ThemeContext";
 const Layout = () => {
   const {theme} = useContext(ThemeContext)
 
-  console.log(theme);
-
   return (
     <div className={`theme-${theme}`} style={{height: "100vh", width: "100vw"}}>
       <NavBar />
       <div style={{ display: "flex" }}>
         <LeftBar />
-        <div style={{ flex: "6" }}>
+        <div style={{minWidth: "400px"}}>
           <Outlet />
         </div>
         <RightBar />
